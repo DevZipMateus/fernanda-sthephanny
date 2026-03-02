@@ -818,9 +818,145 @@
     @media (min-width: 1920px) {
       section { padding: 130px 12%; }
     }
+
+    /* ─── PRELOADER ─── */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(150deg, #0b3d4a 0%, var(--teal-dark) 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity .75s ease, visibility .75s ease;
+    }
+
+    #preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .pre-logo {
+      width: min(280px, 68vw);
+      animation: prePulse 1.8s ease-in-out infinite;
+      filter: drop-shadow(0 0 32px rgba(114,212,224,.45));
+    }
+
+    @keyframes prePulse {
+      0%, 100% { transform: scale(1);    opacity: 1; }
+      50%       { transform: scale(1.06); opacity: .82; }
+    }
+
+    .pre-bar-wrap {
+      width: min(240px, 62vw);
+      height: 3px;
+      background: rgba(255,255,255,.14);
+      border-radius: 2px;
+      margin-top: 38px;
+      overflow: hidden;
+    }
+
+    .pre-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--teal-light), #fff);
+      border-radius: 2px;
+      animation: preLoad 2.4s cubic-bezier(.4,0,.2,1) forwards;
+    }
+
+    @keyframes preLoad {
+      0%   { width: 0%; }
+      45%  { width: 52%; }
+      78%  { width: 82%; }
+      100% { width: 100%; }
+    }
+
+    .pre-label {
+      color: rgba(255,255,255,.42);
+      font-family: 'Montserrat', sans-serif;
+      font-size: .66rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      margin-top: 16px;
+    }
+
+    /* ─── BARRA DE PROGRESSO ─── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--teal-dark), var(--teal), var(--teal-light));
+      z-index: 1001;
+      transition: width .08s linear;
+      pointer-events: none;
+    }
+
+    /* ─── BACK TO TOP ─── */
+    #back-top {
+      position: fixed;
+      bottom: 100px; right: 30px;
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      font-size: .88rem;
+      cursor: pointer;
+      z-index: 800;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .3s, transform .3s, box-shadow .25s;
+      box-shadow: 0 4px 14px rgba(23,104,120,.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #back-top.show { opacity: 1; transform: translateY(0); }
+    #back-top:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(23,104,120,.55); }
+
+    /* ─── SCROLLSPY ─── */
+    .nav-links a.spy-on { color: var(--teal-light) !important; }
+    #header.scrolled .nav-links a.spy-on { color: var(--teal) !important; }
+
+    /* ─── RIPPLE ─── */
+    @keyframes rippleAnim {
+      from { transform: scale(0); opacity: 1; }
+      to   { transform: scale(1); opacity: 0; }
+    }
+
+    /* ─── ZOOM IMAGEM SOBRE ─── */
+    .sobre-img-box {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,.12);
+    }
+
+    .sobre-img {
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      transition: transform .6s ease !important;
+    }
+
+    .sobre-img-box:hover .sobre-img { transform: scale(1.05); }
   </style>
 </head>
 <body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <img src="logo.png" alt="Fernanda Sthephanny Estética" class="pre-logo">
+  <div class="pre-bar-wrap">
+    <div class="pre-bar-fill"></div>
+  </div>
+  <span class="pre-label">Carregando…</span>
+</div>
+
+<!-- BARRA DE PROGRESSO -->
+<div id="progress-bar"></div>
 
 <!-- HEADER -->
 <header id="header">
@@ -872,10 +1008,12 @@
   <div class="sobre-grid">
 
     <div class="sobre-img-wrap rv">
-      <img
-        src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=800&q=80"
-        alt="Fernanda Sthephanny — Esteticista"
-        class="sobre-img">
+      <div class="sobre-img-box">
+        <img
+          src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=800&q=80"
+          alt="Fernanda Sthephanny — Esteticista"
+          class="sobre-img">
+      </div>
       <div class="sobre-anos">
         <div class="n">8</div>
         <div class="t">anos no<br>mercado</div>
@@ -1231,39 +1369,169 @@
   <p>© 2025 Fernanda Sthephanny Estética Facial &amp; Corporal · CNPJ 37.137.001/0001-92 · Desenvolvido com ♥ por <a href="https://github.com/DevZipMateus" target="_blank" rel="noopener">DevZipMateus</a></p>
 </footer>
 
+<!-- BACK TO TOP -->
+<button id="back-top" aria-label="Voltar ao topo">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
 <!-- WhatsApp Flutuante — Atualizar o número abaixo -->
 <a href="https://wa.me/5599XXXXXXXX?text=Ol%C3%A1%20Fernanda!%20Quero%20agendar%20uma%20consulta." target="_blank" rel="noopener" class="wpp-float" aria-label="WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
 
 <script>
-  // Header scroll
-  const hdr = document.getElementById('header');
-  window.addEventListener('scroll', () => {
-    hdr.classList.toggle('scrolled', window.scrollY > 60);
+  /* ── PRELOADER ── */
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('preloader').classList.add('hidden');
+    }, 2500);
   });
 
-  // Mobile nav
+  /* ── HEADER + PROGRESS BAR + BACK TO TOP + SCROLLSPY ── */
+  const hdr     = document.getElementById('header');
+  const pbar    = document.getElementById('progress-bar');
+  const backTop = document.getElementById('back-top');
+
+  const spySections = Array.from(document.querySelectorAll('section[id]'));
+  const spyLinks    = document.querySelectorAll('.nav-links a[href^="#"]');
+
+  function updateScrollspy() {
+    let cur = '';
+    spySections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 160) cur = s.id;
+    });
+    spyLinks.forEach(a => {
+      a.classList.toggle('spy-on', a.getAttribute('href') === '#' + cur);
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    const sy  = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+
+    hdr.classList.toggle('scrolled', sy > 60);
+    pbar.style.width = (sy / max * 100) + '%';
+    backTop.classList.toggle('show', sy > 400);
+    updateScrollspy();
+  });
+
+  backTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ── MOBILE NAV ── */
   function openNav()  { document.getElementById('mobileNav').classList.add('open'); }
   function closeNav() { document.getElementById('mobileNav').classList.remove('open'); }
 
-  // Fechar ao clicar fora
-  document.getElementById('mobileNav').addEventListener('click', function(e){
+  document.getElementById('mobileNav').addEventListener('click', function(e) {
     if (e.target === this) closeNav();
   });
 
-  // Tabs de serviços
+  /* ── COUNTER ANIMADO (hero stats) ── */
+  function animCount(el, target, suffix, duration) {
+    const t0 = performance.now();
+    (function step(now) {
+      const p    = Math.min((now - t0) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);           // easeOutCubic
+      el.textContent = Math.floor(ease * target) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+
+  const counterData = [
+    { val: 8,   suffix: '+' },
+    { val: 18,  suffix: '+' },
+    { val: 100, suffix: '%' },
+  ];
+
+  const heroObs = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    document.querySelectorAll('.hstat .num').forEach((el, i) => {
+      animCount(el, counterData[i].val, counterData[i].suffix, 1600);
+    });
+    heroObs.disconnect();
+  }, { threshold: .6 });
+
+  heroObs.observe(document.querySelector('.hero-stats'));
+
+  /* ── STAGGER GENÉRICO ── */
+  function staggerGroup(selector, delayStep) {
+    document.querySelectorAll(selector).forEach((el, i) => {
+      el.style.opacity    = '0';
+      el.style.transform  = 'translateY(22px)';
+      el.style.transition = `opacity .52s ease ${i * delayStep}ms, transform .52s ease ${i * delayStep}ms`;
+
+      const obs = new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting) return;
+        entries[0].target.style.opacity   = '1';
+        entries[0].target.style.transform = 'translateY(0)';
+        obs.disconnect();
+      }, { threshold: .12 });
+
+      obs.observe(el);
+    });
+  }
+
+  staggerGroup('.dep-card', 110);
+  staggerGroup('.mvv-card', 120);
+  staggerGroup('.feat',      90);
+
+  /* ── STAGGER DE TABS (serviços) ── */
+  function staggerCards(container) {
+    Array.from(container.querySelectorAll('.scard')).forEach((c, i) => {
+      c.style.opacity    = '0';
+      c.style.transform  = 'translateY(18px)';
+      c.style.transition = `opacity .42s ease ${i * 65}ms, transform .42s ease ${i * 65}ms`;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        c.style.opacity   = '1';
+        c.style.transform = 'translateY(0)';
+      }));
+    });
+  }
+
   function switchTab(id, btn) {
     document.querySelectorAll('.tpanel').forEach(p => p.classList.remove('on'));
     document.querySelectorAll('.tbtn').forEach(b => b.classList.remove('on'));
-    document.getElementById('tab-' + id).classList.add('on');
+    const panel = document.getElementById('tab-' + id);
+    panel.classList.add('on');
     btn.classList.add('on');
+    staggerCards(panel);
   }
 
-  // Scroll reveal
+  // Stagger da tab inicial ao entrar na seção
+  const servicosObs = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    staggerCards(document.getElementById('tab-facial'));
+    servicosObs.disconnect();
+  }, { threshold: .15 });
+  servicosObs.observe(document.getElementById('servicos'));
+
+  /* ── RIPPLE NOS BOTÕES ── */
+  document.querySelectorAll('.btn-solid, .btn-ghost, .btn-wpp, .nav-cta, .tbtn').forEach(btn => {
+    btn.style.position = 'relative';
+    btn.style.overflow = 'hidden';
+
+    btn.addEventListener('click', function(e) {
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 2.2;
+      const r    = document.createElement('span');
+      r.style.cssText = `
+        position:absolute; border-radius:50%; pointer-events:none;
+        width:${size}px; height:${size}px;
+        top:${e.clientY - rect.top - size / 2}px;
+        left:${e.clientX - rect.left - size / 2}px;
+        background:rgba(255,255,255,.28);
+        transform:scale(0); animation:rippleAnim .65s linear;
+      `;
+      this.appendChild(r);
+      setTimeout(() => r.remove(), 700);
+    });
+  });
+
+  /* ── SCROLL REVEAL (.rv) ── */
   const ro = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
-  }, { threshold: 0.12 });
+  }, { threshold: .12 });
 
   document.querySelectorAll('.rv').forEach(el => ro.observe(el));
 </script>
