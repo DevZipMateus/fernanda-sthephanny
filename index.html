@@ -370,7 +370,12 @@
     .feat-txt span { font-size: .85rem; color: var(--gray); line-height: 1.5; }
 
     /* ─── SERVIÇOS ─── */
-    #servicos { background: var(--teal-xlight); }
+    #servicos {
+      background:
+        linear-gradient(rgba(220,244,248,.86), rgba(210,240,246,.86)),
+        url('https://images.unsplash.com/photo-1560750588-73207b1ef5b8?auto=format&fit=crop&w=1920&q=80') center / cover no-repeat;
+      background-attachment: fixed, fixed;
+    }
 
     .sec-center { text-align: center; }
     .sec-center .sdiv { margin: 16px auto 28px; }
@@ -453,7 +458,17 @@
     .sinfo p { font-size: .82rem; color: var(--gray); line-height: 1.55; }
 
     /* ─── MVV ─── */
-    #mvv { background: #fff; }
+    #mvv {
+      background:
+        linear-gradient(rgba(15,72,88,.80), rgba(10,55,68,.84)),
+        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80') center / cover no-repeat;
+      background-attachment: fixed, fixed;
+    }
+
+    #mvv .stag   { color: var(--teal-light); }
+    #mvv .stitle { color: #fff; }
+    #mvv .stitle span { color: var(--teal-light); }
+    #mvv .sdiv   { background: linear-gradient(90deg, var(--teal-light), rgba(255,255,255,.15)); }
 
     .mvv-grid {
       display: grid;
@@ -525,7 +540,17 @@
     .vals-list li i { color: var(--teal); margin-top: 2px; flex-shrink: 0; }
 
     /* ─── DEPOIMENTOS ─── */
-    #depoimentos { background: var(--teal-xlight); }
+    #depoimentos {
+      background:
+        linear-gradient(rgba(23,104,120,.82), rgba(12,58,72,.86)),
+        url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1920&q=80') center / cover no-repeat;
+      background-attachment: fixed, fixed;
+    }
+
+    #depoimentos .stag   { color: var(--teal-light); }
+    #depoimentos .stitle { color: #fff; }
+    #depoimentos .stitle span { color: var(--teal-light); }
+    #depoimentos .sdiv   { background: linear-gradient(90deg, var(--teal-light), rgba(255,255,255,.15)); }
 
     .dep-grid {
       display: grid;
@@ -590,7 +615,10 @@
 
     /* ─── CONTATO ─── */
     #contato {
-      background: linear-gradient(150deg, var(--teal-dark) 0%, #0e4555 100%);
+      background:
+        linear-gradient(150deg, rgba(23,104,120,.87) 0%, rgba(14,69,85,.92) 100%),
+        url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80') center / cover no-repeat;
+      background-attachment: fixed, fixed;
     }
 
     .contato-grid {
@@ -737,7 +765,11 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1023px) {
-      #hero { background-attachment: scroll, scroll; }
+      #hero,
+      #servicos,
+      #mvv,
+      #depoimentos,
+      #contato { background-attachment: scroll, scroll; }
     }
 
     @media (max-width: 900px) {
