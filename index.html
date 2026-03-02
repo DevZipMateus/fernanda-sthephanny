@@ -784,6 +784,7 @@
     @media (max-width: 1023px) {
       #hero,
       #servicos,
+      #produtos,
       #mvv,
       #depoimentos,
       #contato { background-attachment: scroll, scroll; }
@@ -818,6 +819,136 @@
     @media (min-width: 1920px) {
       section { padding: 130px 12%; }
     }
+
+    /* ─── BOTÃO VITRINE (hero) ─── */
+    .btn-vitrine {
+      background: rgba(255,255,255,.13);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1.5px solid rgba(255,255,255,.45);
+      color: #fff;
+      text-decoration: none;
+      padding: 13px 30px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: .88rem;
+      letter-spacing: .04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .2s, border-color .2s, transform .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-vitrine:hover {
+      background: rgba(255,255,255,.24);
+      border-color: rgba(255,255,255,.8);
+      transform: translateY(-2px);
+    }
+
+    /* ─── PRODUTOS ─── */
+    #produtos {
+      background:
+        linear-gradient(rgba(225,245,248,.87), rgba(215,241,246,.87)),
+        url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=1920&q=80') center / cover no-repeat;
+      background-attachment: fixed, fixed;
+    }
+
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 18px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Divisor de categoria dentro do grid */
+    .prod-cat {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 10px 0 4px;
+    }
+
+    .prod-cat:first-child { margin-top: 0; }
+
+    .prod-cat span {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--teal-dark);
+      white-space: nowrap;
+    }
+
+    .prod-cat::after {
+      content: '';
+      flex: 1;
+      height: 1.5px;
+      background: linear-gradient(90deg, var(--teal-light), transparent);
+      border-radius: 1px;
+    }
+
+    .prod-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 24px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .prod-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.09); }
+
+    .prod-ico {
+      width: 44px; height: 44px;
+      background: var(--teal-xlight);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--teal);
+      font-size: .95rem;
+      flex-shrink: 0;
+    }
+
+    .prod-info h3 {
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--gray-dark);
+      margin-bottom: 5px;
+    }
+
+    .prod-info p { font-size: .79rem; color: var(--gray); line-height: 1.5; }
+
+    .prod-cta {
+      text-align: center;
+      margin-top: 44px;
+    }
+
+    .btn-prod-vitrine {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+      color: #fff;
+      text-decoration: none;
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .9rem;
+      box-shadow: 0 6px 22px rgba(42,175,196,.4);
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-prod-vitrine:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(42,175,196,.5); }
 
     /* ─── PRELOADER ─── */
     #preloader {
@@ -965,8 +1096,10 @@
     <ul class="nav-links">
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#produtos">Produtos</a></li>
       <li><a href="#mvv">Valores</a></li>
       <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="vitrine.html"><i class="fas fa-store" style="margin-right:5px;font-size:.75rem"></i>Vitrine</a></li>
       <li><a href="#contato" class="nav-cta">Agendar</a></li>
     </ul>
   </nav>
@@ -978,11 +1111,13 @@
 <!-- MOBILE NAV -->
 <nav id="mobileNav">
   <button class="close-nav" onclick="closeNav()" aria-label="Fechar menu">&times;</button>
-  <a href="#sobre" onclick="closeNav()">Sobre</a>
-  <a href="#servicos" onclick="closeNav()">Serviços</a>
-  <a href="#mvv" onclick="closeNav()">Valores</a>
+  <a href="#sobre"       onclick="closeNav()">Sobre</a>
+  <a href="#servicos"    onclick="closeNav()">Serviços</a>
+  <a href="#produtos"    onclick="closeNav()">Produtos</a>
+  <a href="#mvv"         onclick="closeNav()">Valores</a>
   <a href="#depoimentos" onclick="closeNav()">Depoimentos</a>
-  <a href="#contato" onclick="closeNav()">Agendar</a>
+  <a href="vitrine.html" onclick="closeNav()"><i class="fas fa-store" style="margin-right:6px"></i>Vitrine</a>
+  <a href="#contato"     onclick="closeNav()">Agendar</a>
 </nav>
 
 <!-- HERO -->
@@ -994,6 +1129,7 @@
     <div class="hero-btns">
       <a href="#contato" class="btn-solid">Agendar Consulta</a>
       <a href="#servicos" class="btn-ghost">Ver Serviços</a>
+      <a href="vitrine.html" class="btn-vitrine"><i class="fas fa-store"></i> Vitrine</a>
     </div>
     <div class="hero-stats">
       <div class="hstat"><div class="num">8+</div><div class="lbl">Anos de mercado</div></div>
@@ -1213,6 +1349,107 @@
         <p>Hidratação intensa com microinjeções de ácido hialurônico para pele brilhante e saudável.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <div class="sec-center rv">
+    <span class="stag">Disponíveis na Clínica</span>
+    <h2 class="stitle">Linha de <span>Produtos</span></h2>
+    <div class="sdiv"></div>
+    <p class="ssub">Cosméticos selecionados por Fernanda para potencializar os resultados dos seus tratamentos e manter o cuidado em casa.</p>
+  </div>
+
+  <div class="prod-grid rv">
+
+    <!-- Cuidados Essenciais -->
+    <div class="prod-cat"><span>Cuidados Essenciais</span></div>
+
+    <div class="prod-card">
+      <div class="prod-ico"><i class="fas fa-soap"></i></div>
+      <div class="prod-info">
+        <h3>Sabonete</h3>
+        <p>Limpeza suave e eficaz para o rosto, preservando o equilíbrio natural da pele.</p>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-ico"><i class="fas fa-droplet"></i></div>
+      <div class="prod-info">
+        <h3>Hidratante</h3>
+        <p>Hidratação profunda que restaura a barreira cutânea e proporciona maciez duradoura.</p>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-ico"><i class="fas fa-sun"></i></div>
+      <div class="prod-info">
+        <h3>Protetor Solar</h3>
+        <p>Proteção diária de amplo espectro, essencial na rotina de qualquer tratamento estético.</p>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-ico"><i class="fas fa-lemon"></i></div>
+      <div class="prod-info">
+        <h3>Vitamina C</h3>
+        <p>Antioxidante potente que ilumina, unifica o tom e estimula a produção de colágeno.</p>
+      </div>
+    </div>
+
+    <!-- Linha de Séruns -->
+    <div class="prod-cat"><span>Linha de Séruns</span></div>
+
+    <div class="prod-card">
+      <div class="prod-ico"><i class="fas fa-star"></i></div>
+      <div class="prod-info">
+        <h3>Sérum Clareador</h3>
+        <p>Combate manchas e hiperpigmentação com ativos de alta performance para pele uniforme.</p>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-ico"><i class="fas fa-vial"></i></div>
+      <div class="prod-info">
+        <h3>Sérum Hidratante</h3>
+        <p>Concentrado de ácido hialurônico que hidrata em múltiplas camadas da pele.</p>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-ico"><i class="fas fa-seedling"></i></div>
+      <div class="prod-info">
+        <h3>Sérum Nutritivo</h3>
+        <p>Nutre e repara a pele com ativos biocompatíveis que restauram o viço e a vitalidade.</p>
+      </div>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-ico"><i class="fas fa-arrow-trend-up"></i></div>
+      <div class="prod-info">
+        <h3>Sérum Tensor</h3>
+        <p>Efeito lifting imediato que firma e reduz a aparência de flacidez com uso contínuo.</p>
+      </div>
+    </div>
+
+    <!-- Beleza Labial -->
+    <div class="prod-cat"><span>Beleza Labial</span></div>
+
+    <div class="prod-card">
+      <div class="prod-ico"><i class="fas fa-heart"></i></div>
+      <div class="prod-info">
+        <h3>Gloss Labial</h3>
+        <p>Brilho e hidratação intensa para os lábios, realçando a beleza natural do sorriso.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="prod-cta rv">
+    <a href="vitrine.html" class="btn-prod-vitrine">
+      <i class="fas fa-store"></i> Ver e comprar na Vitrine
+    </a>
   </div>
 </section>
 
@@ -1472,9 +1709,10 @@
     });
   }
 
-  staggerGroup('.dep-card', 110);
-  staggerGroup('.mvv-card', 120);
-  staggerGroup('.feat',      90);
+  staggerGroup('.dep-card',  110);
+  staggerGroup('.mvv-card',  120);
+  staggerGroup('.feat',       90);
+  staggerGroup('.prod-card',  70);
 
   /* ── STAGGER DE TABS (serviços) ── */
   function staggerCards(container) {
@@ -1507,7 +1745,7 @@
   servicosObs.observe(document.getElementById('servicos'));
 
   /* ── RIPPLE NOS BOTÕES ── */
-  document.querySelectorAll('.btn-solid, .btn-ghost, .btn-wpp, .nav-cta, .tbtn').forEach(btn => {
+  document.querySelectorAll('.btn-solid, .btn-ghost, .btn-wpp, .nav-cta, .tbtn, .btn-vitrine, .btn-prod-vitrine').forEach(btn => {
     btn.style.position = 'relative';
     btn.style.overflow = 'hidden';
 
